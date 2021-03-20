@@ -1,0 +1,26 @@
+{
+  "name": "todo-list-convin.ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "json-server --watch db.json --port 3001",
+    "client": "npm start --prefix todo-list",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranaykumar999/Todo-List-convin.ai.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pranaykumar999/Todo-List-convin.ai/issues"
+  },
+  "homepage": "https://github.com/pranaykumar999/Todo-List-convin.ai#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "json-server": "^0.16.3"
+  }
+}
