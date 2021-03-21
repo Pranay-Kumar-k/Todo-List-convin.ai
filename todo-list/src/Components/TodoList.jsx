@@ -16,7 +16,7 @@ const styles = {
         padding:10,
         marginRight:10,
         overflowY:"scroll",
-        minHeight:600
+        maxHeight:600,
     }
 }
 

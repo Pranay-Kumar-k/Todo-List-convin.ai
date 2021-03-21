@@ -18,7 +18,7 @@ export const getTodoData = () => (dispatch) => {
     dispatch(getTodoRequest())
     return axios({
         method:'GET',
-        url:"http://localhost:5000/tasks"
+        url:"https://aqueous-badlands-15880.herokuapp.com/tasks"
     })
     .then((res) => {
         console.log(res.data)
@@ -48,7 +48,7 @@ export const addTask = (payload,params) => (dispatch) => {
     dispatch(addTaskRequest())
     return axios({
         method:"POST",
-        url:`http://localhost:5000/tasks?id=${Number(params)}`,
+        url:`https://aqueous-badlands-15880.herokuapp.com/tasks?id=${Number(params)}`,
         data:{
             taskItems:payload
         }
@@ -81,7 +81,7 @@ export const addCategoryData = (payload) => (dispatch) => {
     dispatch(addCategoryRequest())
     return axios({
         method:'POST',
-        url:"http://localhost:5000/tasks",
+        url:"https://aqueous-badlands-15880.herokuapp.com/tasks",
         data:payload
     })
     .then((res) => {
@@ -101,7 +101,7 @@ export const deleteSuccess = () => ({
 export const deleteTodo = (payload) => (dispatch) => {
     return axios({
         method:"DELETE",
-        url:`http://localhost:5000/tasks?id=${payload}`
+        url:`https://aqueous-badlands-15880.herokuapp.com/tasks?id=${payload}`
     })
     .then((res) => {
         console.log(res)
