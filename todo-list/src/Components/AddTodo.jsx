@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import AddIcon from '@material-ui/icons/Add';
 import { Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCategoryData, addTask } from '../Redux/actionCreator';
+import { v4 as uuidv4 } from 'uuid';
+import "./AddTodo.css"
 
 const useStyles = makeStyles((theme) => ({
     styledButton:{
@@ -15,28 +19,57 @@ const useStyles = makeStyles((theme) => ({
         marginTop:10
     },
     input: {
-        marginTop:10,
+        marginTop:20,
     },
     button:{
         marginTop:5
     }
+    
   }));
 
- const AddTodo = ({label})  => {
+ const AddTodo = ({label,category})  => {
      const list = true
     const classes = useStyles();
-    console.log(label)
+    // console.log(label)
     const buttonOpacity = list ? 1 : 0.5;
     const ButtonColor = list ? "white":"inherit";
     const buttonBackground = list ? "rgba(0,0,0.15)":"inherit";
-    const placeholder = label
-    const buttonTitle = label
+    const placeholder = label;
+    const buttonTitle = label;
     const [open,setOpen] = useState(false);
-    const [item,setItem] = useState("");
+    const [task,setTask] = useState("");
+    const todo = useSelector(state => state.todos);
+    const dispatch = useDispatch();
 
-    const handleClick = (title) => {
-        console.log(title,buttonTitle)
-        
+    const handleClick = (e) => {
+        e.preventDefault();
+        console.log(buttonTitle)
+        if(buttonTitle == "Add new Category") {
+            var payload = {
+                title:task,
+                id:uuidv4(),
+                taskItems:[]
+            };
+            console.log(payload);
+            dispatch(addCategoryData(payload));
+            setTask("");
+            setOpen(!open);
+        }
+        else if(buttonTitle == "Add todo item") {
+            var payload = {
+                id:uuidv4(),
+                title:task,
+                completed:false
+            };
+            const list = todo.filter((item) => item.title == category)[0]
+            const taskList = [...list.taskItems,payload];
+            const params = list.id
+            // const newList = {...list,taskItems:taskList}
+            console.log(taskList,params);
+            dispatch(addTask(taskList,params));
+            setTask("");
+            setOpen(!open);
+        }
     }
 
     return (
@@ -51,9 +84,9 @@ const useStyles = makeStyles((theme) => ({
                     fullWidth 
                     autoFocus
                     // onBlur = {() => setOpen(!open)}
-                    onChange={(e) => setItem(e.target.value)}
+                    onChange={(e) => setTask(e.target.value)}
                     />
-                    <Button variant="contained" color="primary" onClick={handleClick(buttonTitle)} className={classes.button}>
+                    <Button variant="contained" color="primary" onClick={handleClick} className={classes.button}>
                         {buttonTitle}
                     </Button>
             </div> 

@@ -1,0 +1,76 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "React",
+      "taskItems": [
+        {
+          "id": "1",
+          "title": "Learn Life cycle methods in react",
+          "completed": true
+        },
+        {
+          "id": "2",
+          "title": "Learn context API",
+          "completed": false
+        },
+        {
+          "id": "3",
+          "title": "React DOM",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Html",
+      "taskItems": [
+        {
+          "id": "1",
+          "title": "Learn Life cycle methods in react",
+          "completed": true
+        },
+        {
+          "id": "2",
+          "title": "Learn context API",
+          "completed": false
+        },
+        {
+          "id": "3",
+          "title": "React DOM",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "taskItems": [
+        {
+          "id": "1",
+          "title": "Learn Life cycle methods in react",
+          "completed": true
+        },
+        {
+          "id": "2",
+          "title": "Learn context API",
+          "completed": false
+        },
+        {
+          "id": "3",
+          "title": "React DOM",
+          "completed": false
+        },
+        {
+          "id": "3cedf7ab-bfb9-4369-8821-2d94b72223cb",
+          "title": "Basics",
+          "completed": false
+        }
+      ],
+      "id": 3
+    },
+    {
+      "title": "Javascript",
+      "id": "a95603f7-c918-49f3-9a02-3c751cb36fb2",
+      "taskItems": []
+    }
+  ]
+}

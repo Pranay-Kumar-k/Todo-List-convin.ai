@@ -13,7 +13,8 @@ import Menu from '@material-ui/core/Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    maxWidth:"2500px",
+    display:"block"
   },
   title: {
     flexGrow: 1,

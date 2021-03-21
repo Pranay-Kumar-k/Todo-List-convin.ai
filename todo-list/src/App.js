@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useEffect} from "react";
 import TodoList from "./Components/TodoList";
 import Navbar from "./Components/Navbar";
 import AddTodo from "./Components/AddTodo";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { getTodoData } from "./Redux/actionCreator";
 
 const styles = {
   buckets:{
@@ -13,11 +14,19 @@ const styles = {
 
 
 function App() {
+
+  const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getTodoData())
+    }, [])
+    const todos = useSelector(state => state.todos);
+    console.log(todos);
+
   return (
     <div className="App">
       <Navbar />
       <div style={styles.buckets}>
-        <TodoList />
+        {todos && todos.map((category,i) => (<TodoList key={i} category={category} />) )}
         <AddTodo label={"Add new Category"}/>
       </div>
     </div>
