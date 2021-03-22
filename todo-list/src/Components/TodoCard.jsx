@@ -26,34 +26,41 @@ const generateRandomColor = () => {
 }
 
 const TodoCard = ({task,listId}) => {
-    const {id,title,completed} = task
+    const {id,title,completed} = task;
     const [edit,setEdit] = useState(false);
     const [todo,setTodo] = useState(title);
-    const [status,setStatus] = useState(false);
+    const [status,setStatus] = useState(completed);
     const dispatch = useDispatch();
-    const allTodos = useSelector((state) => state.todos)
+    const allTodos = useSelector((state) => state.todos);
 
     const handleEdit = () => {
-        const list = allTodos.filter((item) => item.id == listId)[0].taskItems
-        const findTodo = list.find((item) => item.id === id)
-        // findTodo.title=todo
-        // const newList = [...list,findTodo]
-        console.log("id---"+id,"taskId----"+listId, list, findTodo)
-        // dispatch(editTodo(newList,listId));
-        setEdit(!edit)
-        setTodo(todo)
+        const list = allTodos.filter((item) => item.id == listId)[0].taskItems;
+        const findTodo = list.find((item) => item.id === id);
+        const newListWithoutItem = list.filter((item) => item.id !== id );
+        findTodo.title=todo;
+        const newList = [...newListWithoutItem,findTodo];
+        console.log("id---"+id,"taskId----"+listId, list, findTodo);
+        dispatch(editTodo(newList,listId));
+        setEdit(!edit);
     }
 
     const handleDelete = () => {
-        console.log(id,listId+"listId")
-        const list = allTodos.filter((item) => item.id == listId)[0].taskItems
-        const newList = list.filter((item) => item.id !== id)
-        console.log(list,newList)
-        dispatch(deleteTodo(newList,listId))
+        console.log(id,listId+"listId");
+        const list = allTodos.filter((item) => item.id == listId)[0].taskItems;
+        const newList = list.filter((item) => item.id !== id);
+        console.log(list,newList);
+        dispatch(deleteTodo(newList,listId));
     }   
 
-    const handleStatus = (id) => {
-        setStatus(!status)
+    const handleStatus = () => {
+        setStatus(!status);
+        const list = allTodos.filter((item) => item.id == listId)[0].taskItems;
+        const findTodo = list.find((item) => item.id === id);
+        const newListWithoutItem = list.filter((item) => item.id !== id );
+        findTodo.completed= !status;
+        const newList = [...newListWithoutItem,findTodo];
+        console.log(list,newList,findTodo);
+        dispatch(editTodo(newList,listId));
     }
 
     const classes = useStyles();
