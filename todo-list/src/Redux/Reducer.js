@@ -1,4 +1,4 @@
-import { ADD_CATEGORY_FAILURE, ADD_CATEGORY_REQUEST, ADD_CATEGORY_SUCCESS, ADD_TASK_FAILURE, ADD_TASK_REQUEST, ADD_TASK_SUCCESS, DELETE_TASK_SUCCESS, GET_TODO_FAILURE, GET_TODO_REQUEST, GET_TODO_SUCCESS } from "./actionType"
+import { ADD_CATEGORY_FAILURE, ADD_CATEGORY_REQUEST, ADD_CATEGORY_SUCCESS, ADD_TASK_FAILURE, ADD_TASK_REQUEST, ADD_TASK_SUCCESS, CHANGE_CATEGORY_FAILURE, CHANGE_CATEGORY_REQUEST, CHANGE_CATEGORY_SUCCESS, DELETE_TASK_SUCCESS, GET_TODO_FAILURE, GET_TODO_REQUEST, GET_TODO_SUCCESS } from "./actionType"
 
 const initState = {
     todos:[]
@@ -46,6 +46,18 @@ export const reducer = (state = initState, {type,payload}) => {
                 ...state
             }
         case DELETE_TASK_SUCCESS:
+            return {
+                ...state
+            }
+        case CHANGE_CATEGORY_REQUEST:
+            return {
+                ...state
+            }
+        case CHANGE_CATEGORY_SUCCESS: 
+            return {
+                ...state
+            }
+        case CHANGE_CATEGORY_FAILURE:
             return {
                 ...state
             }

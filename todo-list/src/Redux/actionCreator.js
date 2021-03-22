@@ -1,4 +1,8 @@
-import { ADD_CATEGORY_FAILURE, ADD_CATEGORY_REQUEST, ADD_CATEGORY_SUCCESS, ADD_TASK_FAILURE, ADD_TASK_REQUEST, ADD_TASK_SUCCESS, DELETE_TASK_SUCCESS, GET_TODO_FAILURE, GET_TODO_REQUEST, GET_TODO_SUCCESS } from "./actionType";
+import { ADD_CATEGORY_FAILURE, ADD_CATEGORY_REQUEST, ADD_CATEGORY_SUCCESS, ADD_TASK_FAILURE, ADD_TASK_REQUEST, ADD_TASK_SUCCESS, DELETE_TASK_SUCCESS, GET_TODO_FAILURE, GET_TODO_REQUEST, 
+    GET_TODO_SUCCESS,
+    CHANGE_CATEGORY_REQUEST,
+    CHANGE_CATEGORY_SUCCESS,
+    CHANGE_CATEGORY_FAILURE } from "./actionType";
 import axios from "axios";
 
 export const getTodoRequest = () => ({
@@ -124,6 +128,21 @@ export const editTodo = (payload,params) => (dispatch) => {
         data:{
             taskItems:payload
         }
+    }).then((res) => {
+        console.log(res)
+        dispatch(getTodoData())
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+
+
+export const changeCategoryName = (payload,params) => (dispatch) => {
+    return axios({
+        method:"PATCH",
+        url:`https://aqueous-badlands-15880.herokuapp.com/tasks/${params}`,
+        data:payload
     }).then((res) => {
         console.log(res)
         dispatch(getTodoData())
