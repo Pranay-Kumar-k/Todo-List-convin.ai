@@ -38,7 +38,6 @@ export const reducer = (state = initState, {type,payload}) => {
                 ...state
             }
         case ADD_TASK_SUCCESS:
-            // const newData = this.state.todos.filter((item) => )
             return {
                 ...state
             }
