@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
             setOpen(!open);
         }
         else if(buttonTitle == "Add todo item") {
+            console.log(buttonTitle)
             var payload = {
                 id:uuidv4(),
                 title:task,
@@ -64,8 +65,7 @@ const useStyles = makeStyles((theme) => ({
             const list = todo.filter((item) => item.title == category)[0]
             const taskList = [...list.taskItems,payload];
             const params = list.id
-            // const newList = {...list,taskItems:taskList}
-            console.log(taskList,params);
+            console.log(taskList);
             dispatch(addTask(taskList,params));
             setTask("");
             setOpen(!open);

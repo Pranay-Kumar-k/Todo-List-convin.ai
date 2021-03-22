@@ -7,8 +7,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import Tooltip from '@material-ui/core/Tooltip';
-import { useDispatch } from 'react-redux';
-import { deleteTodo } from '../Redux/actionCreator';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteTodo, editTodo } from '../Redux/actionCreator';
 
 const useStyles = makeStyles((theme) => ({
    card:{
@@ -25,23 +25,31 @@ const generateRandomColor = () => {
     return randomColor;
 }
 
-const TodoCard = ({task}) => {
+const TodoCard = ({task,listId}) => {
     const {id,title,completed} = task
     const [edit,setEdit] = useState(false);
     const [todo,setTodo] = useState(title);
     const [status,setStatus] = useState(false);
     const dispatch = useDispatch();
+    const allTodos = useSelector((state) => state.todos)
 
-    const handleEdit = (id) => {
-        console.log(task,id)
+    const handleEdit = () => {
+        const list = allTodos.filter((item) => item.id == listId)[0].taskItems
+        const findTodo = list.find((item) => item.id === id)
+        // findTodo.title=todo
+        // const newList = [...list,findTodo]
+        console.log("id---"+id,"taskId----"+listId, list, findTodo)
+        // dispatch(editTodo(newList,listId));
         setEdit(!edit)
-        // setTodo(todo)
+        setTodo(todo)
     }
 
-    const handleDelete = (id) => {
-        // const newList = taskItems.filter((item) => item.id !== id);
-        // console.log(newList)
-        dispatch(deleteTodo(Number(id)))
+    const handleDelete = () => {
+        console.log(id,listId+"listId")
+        const list = allTodos.filter((item) => item.id == listId)[0].taskItems
+        const newList = list.filter((item) => item.id !== id)
+        console.log(list,newList)
+        dispatch(deleteTodo(newList,listId))
     }   
 
     const handleStatus = (id) => {
@@ -75,13 +83,13 @@ const TodoCard = ({task}) => {
                     </IconButton>
                 </Tooltip>
                 <Tooltip title="Delete" placement="top">
-                    <IconButton className={classes.button} onClick={(id) => handleDelete(id)}>
+                    <IconButton className={classes.button} onClick={handleDelete}>
                         <DeleteIcon />
                     </IconButton>
                 </Tooltip>
-                <Tooltip title="mark important" placement="top">
+                <Tooltip title={status ? "undo" : "mark important"} placement="top">
                     <IconButton className={classes.button} onClick={handleStatus}>
-                        <LabelImportantIcon color={status ? "secondary" : ""} />
+                        <LabelImportantIcon color={status ? "secondary" : "standard"} />
                     </IconButton>
                 </Tooltip>
             </CardActions>
