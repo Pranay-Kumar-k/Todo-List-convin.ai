@@ -5,6 +5,10 @@ A board where you can list down your tasks according to their priority
 
 <a href="https://pranay-todo-list.netlify.app/">Todo List</a>
 
+# Screenshots
+
+<img src="https://github.com/pranaykumar999/Todo-List-convin.ai/blob/main/todo.png" alt="img"/>
+
 # Installation
 
 ```
