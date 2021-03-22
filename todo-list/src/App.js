@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar factor = {todos.length}/>
       <div style={styles.buckets}>
         {todos && todos.map((category,i) => (<TodoList key={i} category={category} />) )}
         <AddTodo label={"Add new Category"}/>

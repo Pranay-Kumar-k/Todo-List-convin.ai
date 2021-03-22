@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
    text:{
        color:"white"
    },
+   toggle: {
+       textDecoration:"line-through"
+   }
   }));
 
 const generateRandomColor = () => {
@@ -26,10 +29,12 @@ const generateRandomColor = () => {
 }
 
 const TodoCard = ({task,listId}) => {
-    const {id,title,completed} = task;
+    const {id,title,completed,important} = task;
+
     const [edit,setEdit] = useState(false);
     const [todo,setTodo] = useState(title);
     const [status,setStatus] = useState(completed);
+    const [imp,setImportant] = useState(important);
     const dispatch = useDispatch();
     const allTodos = useSelector((state) => state.todos);
 
@@ -52,7 +57,7 @@ const TodoCard = ({task,listId}) => {
         dispatch(deleteTodo(newList,listId));
     }   
 
-    const handleStatus = () => {
+    const toggleStatus = () => {
         setStatus(!status);
         const list = allTodos.filter((item) => item.id == listId)[0].taskItems;
         const findTodo = list.find((item) => item.id === id);
@@ -63,11 +68,22 @@ const TodoCard = ({task,listId}) => {
         dispatch(editTodo(newList,listId));
     }
 
+    const toggleImportant = () => {
+        setImportant(!imp);
+        const list = allTodos.filter((item) => item.id == listId)[0].taskItems;
+        const findTodo = list.find((item) => item.id === id);
+        const newListWithoutItem = list.filter((item) => item.id !== id );
+        findTodo.important= !imp;
+        const newList = [...newListWithoutItem,findTodo];
+        console.log(list,newList,findTodo);
+        dispatch(editTodo(newList,listId));
+    }
+
     const classes = useStyles();
     return (
         <Card className={classes.card}>
             {edit ? (<TextField 
-                    style={{marginTop:20}} 
+                    style={{marginTop:20}}
                     id="outlined-basic" 
                     color="primary"
                     variant="filled" 
@@ -78,7 +94,7 @@ const TodoCard = ({task,listId}) => {
                     onChange={(e) => setTodo(e.target.value)}
                     />) : (
             <CardContent>
-                <Typography className={classes.text} gutterBottom>
+                <Typography className={classes.text} gutterBottom className={completed && classes.toggle} onClick={toggleStatus}>
                     {title}
                 </Typography>
             </CardContent>)}
@@ -94,9 +110,9 @@ const TodoCard = ({task,listId}) => {
                         <DeleteIcon />
                     </IconButton>
                 </Tooltip>
-                <Tooltip title={status ? "undo" : "mark important"} placement="top">
-                    <IconButton className={classes.button} onClick={handleStatus}>
-                        <LabelImportantIcon color={status ? "secondary" : "standard"} />
+                <Tooltip title={imp ? "undo" : "mark important"} placement="top">
+                    <IconButton className={classes.button} onClick={toggleImportant}>
+                        <LabelImportantIcon color={imp ? "secondary" : "standard"} />
                     </IconButton>
                 </Tooltip>
             </CardActions>

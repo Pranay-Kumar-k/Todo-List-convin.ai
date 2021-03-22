@@ -13,8 +13,7 @@ import Menu from '@material-ui/core/Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth:"2500px",
-    display:"block"
+    width:"auto"
   },
   title: {
     flexGrow: 1,
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar() {
+const Navbar = ({factor}) => {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,8 +39,9 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
+  const {innerWidth} = window;
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{width:factor*400}}>
       
       <AppBar position="static">
         <Toolbar>
@@ -91,3 +91,6 @@ export default function Navbar() {
     </div>
   );
 }
+
+
+export default Navbar

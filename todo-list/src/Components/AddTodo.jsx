@@ -16,13 +16,16 @@ const useStyles = makeStyles((theme) => ({
         height:40,
         width:290,
         paddingLeft:10,
-        marginTop:10
+        marginTop:10,
+        marginRight:5,
+        minWidth:250
+
     },
     input: {
         marginTop:20,
     },
     button:{
-        marginTop:5
+        marginTop:5,
     }
     
   }));
