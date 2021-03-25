@@ -3,7 +3,11 @@ A board where you can list down your tasks according to their priority
 
 # Demo
 
-<a href="https://60576a4e478fc6d757d36d7c--todo-list-pranay.netlify.app/">Todo List</a>
+<a href="https://pranay-todo-list.netlify.app/">Todo List</a>
+
+# Screenshots
+
+<img src="https://github.com/pranaykumar999/Todo-List-convin.ai/blob/main/todo.png" alt="img"/>
 
 # Installation
 
@@ -23,6 +27,8 @@ git clone "https://github.com/pranaykumar999/Todo-List-convin.ai.git"
 ```
 Run this command in the project folder
 
-npm run dev
+cd todo-list/
+
+npm run start
 
 ```
