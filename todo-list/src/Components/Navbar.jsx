@@ -13,7 +13,7 @@ import Menu from '@material-ui/core/Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width:"auto"
+    // width:"100%"
   },
   title: {
     flexGrow: 1,
@@ -41,7 +41,7 @@ const Navbar = ({factor}) => {
 
   const {innerWidth} = window;
   return (
-    <div className={classes.root} style={{width:factor*400}}>
+    <div className={classes.root} style={(factor < 4) ? {width:"100%"}: {width:factor*450}}>
       
       <AppBar position="static">
         <Toolbar>
